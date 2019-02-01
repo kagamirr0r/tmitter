@@ -1,4 +1,7 @@
 class TmittsController < ApplicationController
+  before_action :require_user_logged_in
+  before_action :correct_user, only: [:destroy]
+  
   def create
     @tmitt = current_user.tmitts.build(tmitt_params)
     if @tmitt.save
@@ -13,12 +16,19 @@ class TmittsController < ApplicationController
   def destroy
     @tmitt.destroy
     flash[:danger] = 'メッセージを削除しました'
-  　redirect_back(fallback_loccation: root_url)
+  　redirect_back(fallback_location: root_path)
   end
   
   private
   
   def tmitt_params
    params.require(:tmitt).permit(:content)  
+  end
+  
+  def correct_user
+   @tmitt = current_user.tmitt.find_by(id: params[:id])
+   unless @tmitt
+    redirect_to root_url
+   end
   end
 end

@@ -11,6 +11,8 @@
         <div>
           <p><%= tmitt.content %></p>
         </div>
+        <% if current_user == tmitt.user %>
+        <% link_to 'DELETE', tmitt_path, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
       </div>
     </li>
   <% end %>
