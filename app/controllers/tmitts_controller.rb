@@ -8,6 +8,7 @@ class TmittsController < ApplicationController
       flash[:success] = 'メッセージを投稿しました'
       redirect_to root_url
     else
+      @tmitts = current_user.feed_tmitts.order('created_at DESC').page(params[:page])
       flash[:danger]
       render 'toppages/index'
     end
