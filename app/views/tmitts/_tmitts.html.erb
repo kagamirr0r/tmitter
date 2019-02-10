@@ -11,8 +11,13 @@
         <div>
           <p><%= tmitt.content %></p>
         </div>
+        <div>
+          <%= image_tag(tmitt.image) if tmitt.image? %>
+        </div>
         <% if current_user == tmitt.user %>
-        <% link_to 'DELETE', tmitt_path, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <%=link_to 'DELETE', tmitt_path(tmitt), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+        <% end %>
+
       </div>
     </li>
   <% end %>
