@@ -16,8 +16,8 @@ class TmittsController < ApplicationController
 
   def destroy
     @tmitt.destroy
-    flash[:danger] ="メッセージを削除しました"
-  　redirect_back(fallback_location: root_path)
+    flash[:danger] = 'メッセージを削除しました'
+    redirect_back(fallback_location: root_path)
   end
   
   private

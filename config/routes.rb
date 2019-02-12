@@ -15,4 +15,5 @@ end
 
 resources :tmitts, only: [:create, :destroy]
 resources :relationships, only:[:create, :destroy]
+resources :favorites, only: [:create, :destroy]
 end

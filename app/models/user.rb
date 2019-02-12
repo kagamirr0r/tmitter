@@ -13,6 +13,9 @@ class User < ApplicationRecord
  has_many :reverse_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
  has_many :followers, through: :reverse_relationship, source: :user
  
+ has_many :favorites
+ has_many :likes, through: :favorites, source: :tmitt
+ 
  def follow(other_user)
   unless self == other_user
   self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -28,7 +31,22 @@ class User < ApplicationRecord
   self.followings.include?(other_user)
  end
  
- def feed_tmitts
-    Tmitts.where(user_id: self.following_ids + [self.id])
+ def feed_tmitts(other_user)
+    Tmitt.where(user_id: self.following_ids + [self.id])
  end
+ 
+ def like(tmitt)
+   self.favorites.find_or_create(tmitt_id: tmitt.id)
+ end
+ 
+ def unlike(tmitt)
+  favorite = self.favorites.find_by(tmitt_id: tmitt.id)
+  favorite.destroy if favorite
+ end
+ 
+ def liking?(tmitt)
+  self.favorites.include?(tmitt)
+ end
+ 
+ 
 end
