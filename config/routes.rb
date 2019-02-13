@@ -10,10 +10,16 @@ resources :users, only: [:index, :show, :new, :create, :edit] do
  member do
  get :followings
  get :followers
+ get :like
  end
 end
 
-resources :tmitts, only: [:create, :destroy]
+resources :tmitts, only: [:create, :destroy] do
+ member do
+ get :liked
+ end
+end
+
 resources :relationships, only:[:create, :destroy]
 resources :favorites, only: [:create, :destroy]
 end

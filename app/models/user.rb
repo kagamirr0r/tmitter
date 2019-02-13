@@ -39,7 +39,7 @@ class User < ApplicationRecord
    self.favorites.find_or_create(tmitt_id: tmitt.id)
  end
  
- def unlike(tmitt)
+ def cancel_like(tmitt)
   favorite = self.favorites.find_by(tmitt_id: tmitt.id)
   favorite.destroy if favorite
  end

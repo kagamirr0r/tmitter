@@ -26,7 +26,7 @@ before_action :require_user_logged_in, only:[:index, :show, :followings, :follow
   end
   
   def edit
-    @user = User.find(id: params[:id])
+    @user = User.find(params[:id])
   end
   
   def followings
@@ -41,6 +41,11 @@ before_action :require_user_logged_in, only:[:index, :show, :followings, :follow
     counts(@user)
   end
   
+  def like
+   @user = User.find(params[:id])
+   @like = @user.like.page(params[:page])
+   counts(@user)
+  end
   
   private
   

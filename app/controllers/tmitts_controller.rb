@@ -20,6 +20,12 @@ class TmittsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def liked
+    @tmitt = Tmitt.find(params[:id])
+    @liked = @tmitt.liked.page(params[:page])
+    counts(@tmitt)
+  end
+  
   private
   
   def tmitt_params
