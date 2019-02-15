@@ -23,7 +23,7 @@ class TmittsController < ApplicationController
   def liked
     @tmitt = Tmitt.find(params[:id])
     @liked = @tmitt.liked.page(params[:page])
-    counts(@tmitt)
+    counting(@tmitt)
   end
   
   private

@@ -43,7 +43,7 @@ before_action :require_user_logged_in, only:[:index, :show, :followings, :follow
   
   def like
    @user = User.find(params[:id])
-   @like = @user.like.page(params[:page])
+   @likes = @user.likes.page(params[:page])
    counts(@user)
   end
   

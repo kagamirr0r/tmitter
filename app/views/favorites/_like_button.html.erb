@@ -1,16 +1,11 @@
 <% if current_user.liking?(like) %>
-
-<%= form_for(current_user.favorites.find_by(tmitt_id: like.id), html:{method: :delete}) do |f|%>
-<%= hidden_field_tag :tmitt_id, like.id %>
-
-<%= f.submit "CanceL Like", class: 'btn btn-danger btn-block'%>
-
-<% end %>
+ <%= form_for(current_user.favorites.find_by(tmitt_id: like.id), html:{method: :delete}) do |f|%>
+ <%= hidden_field_tag :tmitt_id, like.id %>
+ <%= f.submit "CanceL Like", class: 'btn btn-danger btn-block'%>
+ <% end %>
 <% else %>
-<%= form_for(current_user.favorites.build) do |f|%>
-<%= hidden_field_tag :tmitt_id, like.id %>
-
-<%= f.submit "Like",  class: 'btn btn-primary btn-block' %>
-
-<% end %>
+ <%= form_for(current_user.favorites.build) do |f|%>
+ <%= hidden_field_tag :tmitt_id, like.id %>
+ <%= f.submit "Like",  class: 'btn btn-primary btn-block' %>
+ <% end %>
 <% end %>

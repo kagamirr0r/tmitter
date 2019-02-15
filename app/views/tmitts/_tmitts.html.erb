@@ -9,17 +9,20 @@
           <%= link_to tmitt.user.name, user_path(tmitt.user) %> <span class="text-muted">posted at <%= tmitt.created_at %></span>
         </div>
         <div>
-          <p><%= tmitt.content %><%= tmitt.counts %></p>
+          <p><%= tmitt.content %><%= @count_liked %></p>
         </div>
         <div>
           <%= image_tag(tmitt.image) if tmitt.image? %>
         </div>
+        <div>
+          <%= render 'favorites/like_button', like: tmitt %>
+        </div>
+       
         <% if current_user == tmitt.user %>
-          <%=link_to 'DELETE', tmitt_path(tmitt), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <a><%=link_to 'DELETE', tmitt_path(tmitt), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %></a>
         <% end %>
-      <%= render 'favorites/like_button', like: tmitt %>
-      </div>
-        <%= link_to 'Liked Users', liked_tmitt_path(tmitt), class: 'btn btn-info btn-xs' %>
+        <a><%= link_to 'Liked Users', liked_tmitt_path(tmitt), class: 'btn btn-info btn-xs' %></a>
+    </div>
     </li>
   <% end %>
   <%= paginate tmitts %>

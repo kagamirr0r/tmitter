@@ -11,12 +11,14 @@ class ApplicationController < ActionController::Base
    end
   end
   
-  def counts(user, tmitt)
+  def counts(user)
    @count_tmitts = user.tmitts.count
    @count_followings = user.followings.count
    @count_followers = user.followers.count
    @count_likes = user.likes.count
+  end
+  
+  def counting(tmitt)
    @count_liked = tmitt.liked.count
   end
-     
 end

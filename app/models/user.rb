@@ -31,12 +31,12 @@ class User < ApplicationRecord
   self.followings.include?(other_user)
  end
  
- def feed_tmitts(other_user)
+ def feed_tmitts
     Tmitt.where(user_id: self.following_ids + [self.id])
  end
  
  def like(tmitt)
-   self.favorites.find_or_create(tmitt_id: tmitt.id)
+   self.favorites.find_or_create_by(tmitt_id: tmitt.id)
  end
  
  def cancel_like(tmitt)
@@ -45,7 +45,7 @@ class User < ApplicationRecord
  end
  
  def liking?(tmitt)
-  self.favorites.include?(tmitt)
+  self.likes.include?(tmitt)
  end
  
  
