@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: tmitter_production
   username: tmitter
   password: <%= ENV['TMITTER_DATABASE_PASSWORD'] %>
