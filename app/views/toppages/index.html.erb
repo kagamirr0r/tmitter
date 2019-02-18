@@ -8,6 +8,7 @@
         <div class="form-group">
           <%= f.label :image, "ファイル選択" %>
           <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>

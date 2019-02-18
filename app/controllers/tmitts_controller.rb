@@ -29,7 +29,7 @@ class TmittsController < ApplicationController
   private
   
   def tmitt_params
-   params.require(:tmitt).permit(:content, :image)  
+   params.require(:tmitt).permit(:content, :image, :image_cache)  
   end
   
   def correct_user
